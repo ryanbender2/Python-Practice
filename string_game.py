@@ -53,3 +53,16 @@ def bar_chart(results):
 
 
 print(bar_chart({'Q2': 0, 'Q3': 100, 'Q4': 0, 'Q1': 600}))
+
+"""
+    Here's how an expert did this problem.
+    
+    def bar_chart(results):
+    	res = []
+        for r in results:
+            n = '#'*(results[r]//50) + ' ' if results[r] > 0 else ''
+            res.append('{}|{}{}'.format(r,n,results[r]))
+        res.sort(key=lambda x: x[1])
+        res.sort(key=lambda x: x.count('#'),reverse=True)
+        return '\n'.join(res)
+"""
