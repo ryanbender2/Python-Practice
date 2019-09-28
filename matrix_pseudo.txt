@@ -1,0 +1,26 @@
+def function(matrix, num_of_steps):
+    if col_equal and row_equal:
+        return num_of_steps
+    else:
+        if col_equal and !row_equal:
+            Find the row or rows with issues:
+            Subtract different sum from target sum
+            Find the first thing possible to change
+            return function(matrix, num_of_steps + 1)
+        
+        elif !col_equal and row_equal:
+            Find the col or cols with issues:
+            Subtract different sum from target sum
+            Find the first thing possible to change
+            return function(matrix, num_of_steps + 1)
+        else
+            if list.count(0) == list.count(1):
+                Find the first difference and change something
+                return function(matrix, num_of_steps + 1)
+            else:
+                Find the different column
+                Find the different row
+                Change it to opposite
+                return function(matrix, num_of_steps + 1)
+
+if 
