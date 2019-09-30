@@ -1,0 +1,42 @@
+0110
+0101
+1010
+0101
+
+0000
+0000
+0100
+0000
+
+ ABCD
+A1110
+B0101
+C1010
+D0101
+
+ A  B   C  D
+2, 3-1, 2, 2
+ A   B  C  D
+3-1, 2, 2, 2
+
+AB BB DB
+AA AB AC
+
+AA AB AC
+   BB    BD
+CA    CC
+   DB    DD
+
+CB
+
+AD
+
+         AD
+BA    BC
+   CB    CD
+DA    DC
+
+1001
+0110
+0110
+1001
