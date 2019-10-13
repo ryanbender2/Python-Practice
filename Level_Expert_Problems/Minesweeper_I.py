@@ -10,39 +10,39 @@
 """
 
 
-def num_grid(lst):
+def num_grid(game_grid):
     # Find bomb locations (#)
     bomb_locations = []
-    for column in range(len(lst)):
-        for row in range(len(lst)):
-            if lst[column][row] == '#':
+    for column in range(len(game_grid)):
+        for row in range(len(game_grid)):
+            if game_grid[column][row] == '#':
                 bomb_locations.append((column, row))
             else:
-                lst[column][row] = 0
+                game_grid[column][row] = 0
 
-    # Add mines around each bomb
-    for b in bomb_locations:
-        for l in [(b[0] - 1, b[1] - 1),
-                  (b[0] - 1, b[1]),
-                  (b[0] - 1, b[1] + 1),
-                  (b[0], b[1] - 1),
-                  (b[0], b[1] + 1),
-                  (b[0] + 1, b[1] - 1),
-                  (b[0] + 1, b[1]),
-                  (b[0] + 1, b[1] + 1)]:
-            try:
-                if -1 not in [l[0], l[1]]:
-                    if lst[l[0]][l[1]] != '#':
-                        lst[l[0]][l[1]] += 1
+    # Add surrouding bomb amounts around each bomb
+    for bomb in bomb_locations:
+        for bomb_amounts in [(bomb[0] - 1, bomb[1] - 1),
+                  (bomb[0] - 1, bomb[1]),
+                  (bomb[0] - 1, bomb[1] + 1),
+                  (bomb[0], bomb[1] - 1),
+                  (bomb[0], bomb[1] + 1),
+                  (bomb[0] + 1, bomb[1] - 1),
+                  (bomb[0] + 1, bomb[1]),
+                  (bomb[0] + 1, bomb[1] + 1)]:
+            try:  # index error checking for edges of grid
+                if -1 not in [bomb_amounts[0], bomb_amounts[1]]:
+                    if game_grid[bomb_amounts[0]][bomb_amounts[1]] != '#':
+                        game_grid[bomb_amounts[0]][bomb_amounts[1]] += 1
             except IndexError:
                 None
 
     # Convert ints back to strings
-    for column in range(len(lst)):
-        for row in range(len(lst)):
-            lst[column][row] = str(lst[column][row])
+    for column in range(len(game_grid)):
+        for row in range(len(game_grid)):
+            game_grid[column][row] = str(game_grid[column][row])
 
-    return lst
+    return game_grid
 
 
 print(num_grid([
