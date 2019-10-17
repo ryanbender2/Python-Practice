@@ -13,7 +13,7 @@ def encrypt(msg, keyword):
     
     # split message into the respective columns
     splt_msg = [msg[i : i + len(keyword)] for i in range(0, len(msg), len(keyword))]
-    
+
     # add null values to end of message if needed
     if len(splt_msg[-1]) != len(keyword):
         for _ in range(len(keyword) - len(splt_msg[-1])):
@@ -76,4 +76,4 @@ def c_cipher(msg, keyword):
         return decrypt(msg, keyword)
 
 # Run solution
-print(c_cipher('thlsgtcsexo eawo', 'dog'))
+print(c_cipher('The tomato is a plant in the nightshade family', 'tomato'))
