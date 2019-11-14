@@ -49,4 +49,4 @@ def translate_sentence(sentence):
 
 
 
-print(translate_sentence('Hello how is it going?'))
+print(translate_sentence('Preston is the booty'))

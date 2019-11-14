@@ -76,4 +76,4 @@ def c_cipher(msg, keyword):
         return decrypt(msg, keyword)
 
 # Run solution
-print(c_cipher('The tomato is a plant in the nightshade family', 'tomato'))
+print(c_cipher('eooabwgtbuaittxegetxrnhhx', 'jesus'))
