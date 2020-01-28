@@ -1,4 +1,4 @@
-""" Columnar Cipher
+""" Columnar Cipher - Challenge
   Create a function that takes a string and a keyword.
   Return the ciphertext if the string is in plaintext
   (i.e. broken up into normal English words and punctuated),
@@ -76,4 +76,4 @@ def c_cipher(msg, keyword):
         return decrypt(msg, keyword)
 
 # Run solution
-print(c_cipher('eooabwgtbuaittxegetxrnhhx', 'jesus'))
+print(c_cipher('ebvloyjxeelownax', 'pancakes'))
