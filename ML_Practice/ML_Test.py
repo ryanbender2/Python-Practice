@@ -1,38 +1,52 @@
-import numpy as np
-import pandas as pd
-import joblib
-from sklearn import preprocessing
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import make_pipeline
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import mean_squared_error, r2_score
-from sklearn.model_selection import GridSearchCV
+# from pandas import read_csv
+# from pandas.plotting import scatter_matrix
+# from matplotlib import pyplot
+# from sklearn.model_selection import train_test_split
+# from sklearn.model_selection import cross_val_score
+# from sklearn.model_selection import StratifiedKFold
+# from sklearn.metrics import classification_report
+# from sklearn.metrics import confusion_matrix
+# from sklearn.metrics import accuracy_score
+# from sklearn.linear_model import LogisticRegression
+# from sklearn.tree import DecisionTreeClassifier
+# from sklearn.neighbors import KNeighborsClassifier
+# from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+# from sklearn.naive_bayes import GaussianNB
+# from sklearn.svm import SVC
 
-pipeline = make_pipeline(preprocessing.StandardScaler(), 
-                         RandomForestRegressor(n_estimators=100))
+# # Load dataset
+# url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
+# names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
+# dataset = read_csv(url, names=names)
 
-dataset = 'datasets\winequality-red.csv'
-data = pd.read_csv(dataset, sep=';')
-
-y = data.quality
-X = data.drop('quality', axis=1)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123, stratify=y)
-
-scaler = preprocessing.StandardScaler().fit(X_train)
-
-hyperparameters = {'randomforestregressor__max_features' : ['auto', 'sqrt', 'log2'],
-                   'randomforestregressor__max_depth': [None, 5, 3, 1]}
-
-clf = GridSearchCV(pipeline, hyperparameters, cv=10)
+# # Split-out validation dataset
+# array = dataset.values
+# X = array[:, 0:4]
+# y = array[:, 4]
+# X_train, X_validation, Y_train, Y_validation = train_test_split(X, y, test_size=0.20, random_state=1)
  
-# Fit and tune model
-clf.fit(X_train, y_train)
+# # Make predictions on validation dataset
+# model = SVC(gamma='auto')
+# model.fit(X_train, Y_train)
+# predictions = model.predict(X_validation)
 
-y_pred = clf.predict(X_test)
+# # Evaluate predictions
+# print(accuracy_score(Y_validation, predictions))
+# print(confusion_matrix(Y_validation, predictions))
+# print(classification_report(Y_validation, predictions))
 
-joblib.dump(clf, 'datasets/rf_regressor.pkl')
+# Evaluate using Cross Validation
+from pandas import read_csv
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LogisticRegression
+url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv"
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+dataframe = read_csv(url, names=names)
+array = dataframe.values
+X = array[:,0:8]
+Y = array[:,8]
+kfold = KFold(n_splits=10, random_state=7, shuffle=True)
+model = LogisticRegression(solver='liblinear')
+results = cross_val_score(model, X, Y, cv=kfold)
+print("Accuracy: %.3f%% (%.3f%%)" % (results.mean()*100.0, results.std()*100.0))
